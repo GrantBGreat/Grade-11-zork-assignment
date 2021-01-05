@@ -1,0 +1,27 @@
+legend:
+ways to lose are marked with a !note!
+other notes are marked with <note>
+
+
+Setting: Theme Park
+
+
+game additions (not all will be added):
+- lockable doors
+- diffrent ride activitys
+- ride token system
+- ending score is the amound to tokens you end with
+
+
+rides and places: !if you try to eat in a ride, you will get kicked out!
+- the park gate <this is where you start, and where you can end the game>
+- main park area's
+- a couple of roller coasters !one that is in construction that you die if you try to ride! <must come up with names>
+- water slide next to pool <!you can drink the pool water but you have a small chance at losing to poisoning!>
+- food court where you can use tokens to get food & water
+- random games where you can have a random chance of getting tokens
+
+additional notes:
+- If you run out of tokens, you lose.
+- you have hunger and thurst levels that drop by random amounts as you travel
+- hunger and thurst levels drop by random amounts in certain ranges when at rides
