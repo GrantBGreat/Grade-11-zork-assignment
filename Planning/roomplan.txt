@@ -20,6 +20,7 @@ rides and places: !if you try to eat in a ride, you will get kicked out!
 - water slide next to pool <!you can drink the pool water but you have a small chance at losing to poisoning!>
 - food court where you can use tokens to get food & water
 - random games where you can have a random chance of getting tokens
+- haunted house <this place has multiple rooms and is a risk of loseing to scares, but has high revards if you make it to a certain room>
 
 additional notes:
 - If you run out of tokens, you lose.
