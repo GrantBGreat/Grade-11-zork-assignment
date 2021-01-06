@@ -1,18 +1,24 @@
 Room Name: Gate
-Room Description:  This is The gate of the park. Here you start your game, but you also come here to end your game. It is at the far east of the park.
+Room Description:  This is The gate of the park. Here you start your game, but you also come here to end your game. It is at the far South of the park.
 Exit Rooms: N-Main Path
 Room Name: Main Path
 Room Description:  This is the main path for the park. Stop waisting your time here.
 Exit Rooms: W-Roller Road, E-Bloods Point Road, S-Gate, N-Main Path North
 Room Name: Roller Road
-Room Description:  You are in the West path of the park. You hear the screeming of roller coasters.
+Room Description:  You are on a West path of the park. You hear the screeming of roller coasters.
 Exit Rooms: E-Main Path
 Room Name: Bloods Point Road
-Room Description:  You are in the East path of the park. Shivers get sent down your spine.
+Room Description:  You are on an East path of the park. Shivers get sent down your spine.
 Exit Rooms: W-Main Path
 Room Name: Main Path North
-Room Description:  You are in the far north section of the Main Path.
-Exit Rooms: S-Main Path
-Room Name: 
-Room Description:  
-Exit Rooms: 
+Room Description:  You are in the far North section of the Main Path.
+Exit Rooms: S-Main Path, N-Splash Street
+Room Name: Spash Street
+Room Description:  This is the farthest North street in the park. The ground is wet here.
+Exit Rooms: S-Main Path North, W-Spagetti Street, E-Packman Avenue
+Room Name: Spagetti Street
+Room Description:  You are on a West path of the park. You smell food. mmmmmmmmmmmmmmmmmmmmmmm
+Exit Rooms: W-Main Path North
+Room Name: Packman Avenue
+Room Description:  You are on an East path of the park. You hear pew pew sounds from fake guns.
+Exit Rooms: W-Main Path North
