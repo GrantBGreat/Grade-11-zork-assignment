@@ -9,19 +9,19 @@ Room Description:  You are on a West path of the park. You hear the screeming of
 Exit Rooms: E-Main Path, W-The Kraken, N-The Ring
 Room Name: Bloods Point Road
 Room Description:  You are on an East path of the park. Shivers get sent down your spine. There is one thing on this road and its a house at the very end.
-Exit Rooms: W-Main Path, E-Haunted House Yard
+Exit Rooms: W-Main Path, E-Haunted House Yard, N-Fortune Teller
 Room Name: Main Path North
 Room Description:  You are in the far North section of the Main Path.
-Exit Rooms: S-Main Path, N-Splash Street
+Exit Rooms: S-Main Path, N-Splash Street, W-Spagetti Street, E-Packman Avenue
 Room Name: Spash Street
 Room Description:  This is the farthest North street in the park. The ground is wet here.
-Exit Rooms: S-Main Path North, W-Spagetti Street, E-Packman Avenue
+Exit Rooms: S-Main Path North, W-The Logger, E-Pool Party, N-The Slippyest Slides
 Room Name: Spagetti Street
 Room Description:  You are on a West path of the park. You smell food. mmmmmmmmmmmmmmmmmmmmmmm
-Exit Rooms: W-Main Path North
+Exit Rooms: E-Main Path North, N-Papa's Pizzaria, W-Just Juice, S-Bobby's Burger Shop
 Room Name: Packman Avenue
 Room Description:  You are on an East path of the park. You hear pew pew sounds from fake guns.
-Exit Rooms: W-Main Path North
+Exit Rooms: W-Main Path North, N-Defend The Park, E-You Lose Casino
 Room Name: The Kraken
 Room Description:  This coaster looks fun! You can get 25 tokens by riding it.
 Exit Rooms: W-Roller Road
@@ -43,3 +43,30 @@ Exit Rooms: E-Top floor hall
 Room Name: Top floor hall
 Room Description:  You in a hall on the top floor
 Exit Rooms: W-Top of Haunted House Stairwell
+Room Name: Fortune Teller
+Room Description:  You see an old lady with a crystal ball. She asks if you would like to see your fortune for 5 tokens?
+Exit Rooms: S-Bloods Point Road
+Room Name: Papa's Pizzaria
+Room Description:  This place seems to sell pizza, you can buy a slice for 10 tokens
+Exit Rooms: S-Spagetti Street
+Room Name: Just Juice
+Room Description:  Lots of drinks here! You can buy one for 5 tokens.
+Exit Rooms: E-Spagetti Street
+Room Name: Bobby's Burger Shop
+Room Description:  Here you can buy Burger's. They cost 15 tokens per.
+Exit Rooms: N-Spagetti Street
+Room Name: Defend The Park
+Room Description:  In this minigame you must defend the theme park from zombies and other intruders. It costs 10 tokens to play, but you have heard it is high reward.
+Exit Rooms: S-Packman Avenue
+Room Name: You Lose Casino
+Room Description:  Here you can make bets with your tokens and get a % back.
+Exit Rooms: W-Packman Avenue
+Room Name: The Logger
+Room Description:  The Logger is a log ride... It looks like you are going to get wet!
+Exit Rooms: E-Splash Street
+Room Name: Pool Party
+Room Description:  This is a Pool, you see no lifeguards.
+Exit Rooms: W-Splash Street
+Room Name: The Slippyest Slides
+Room Description:  You see water slides. Looks fun!
+Exit Rooms: S-Splash Street
