@@ -4,6 +4,7 @@ Assignment for grade 11 comp-sci (ICS3U-AP) ISP project
 # The guidlines:
 
 **The Game** (origonal Zork ~ https://classicreload.com/zork-i.html)
+
 Your task is to design and implement a text adventure game. You have been given a simple framework/Java Project (Zork1 shell) that lets you walk through a couple of rooms and contains some limited commands. You must use this as a starting point. The original code uses a file to store the rooms and its descriptions. It also contains several classes that you will expand on in addition to creating new classes.
 
 **Read the Code**
