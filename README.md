@@ -1,5 +1,5 @@
 # Grade-11-zork-assignment
-Assignment for grade 11 comp-sci (ICS3U-AP) ISP project written in java.
+Assignment for grade 11 comp-sci (ICS3U-AP) ISP written in java.
 
 # The guidlines:
 
