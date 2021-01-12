@@ -23,6 +23,9 @@ class Game {
 	private Parser parser;
 	private Room currentRoom;
 	private Inventory inventory;
+	private int tokens;
+	private int hunger;
+	private int thurst;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -121,6 +124,9 @@ class Game {
 	 * Create the game and initialise its internal map.
 	 */
 	public Game() {
+		tokens = 500;
+		hunger = 1000;
+		thurst = 1000;
 		try {
 			initRooms("data/Rooms.dat");	// creates the map from the rooms.dat file
 			// initRooms is responsible for building/ initializing the masterRoomMap (private instance variable)
@@ -150,7 +156,6 @@ class Game {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 		}
-		System.out.println("Thank you for playing.  Good bye.");
 	}
 
 	/**
@@ -165,6 +170,7 @@ class Game {
 		System.out.println(currentRoom.longDescription());
 	}
 
+	private boolean hasRodeRing;
 	/**
 	 * Given a command, process (that is: execute) the command. If this command ends
 	 * the game, true is returned, otherwise false is returned.
@@ -184,18 +190,16 @@ class Game {
 				System.out.println("leave what?");
 			else
 				// Check if room is Gate
-				if (currentRoom.getRoomName().equals("Gate"))
+				if (currentRoom.getRoomName().equals("Gate")) {
+					System.out.println("Thank you for attending. Hope to see you soon!\nYour score was: " + tokens);
 					return true; // signal that we want to quit
-				else
+				} else {
 					System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
+				}
 		} else if (commandWord.equals("eat")) {
 			eat(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
 			return jump();
-		} else if (commandWord.equals("sit")) {
-			sit();
-		} else if ("udeswn".indexOf(commandWord) > -1) {
-			goRoom(command);
 		} else if (commandWord.equals("take")) {
 			if (!command.hasSecondWord())
 				System.out.println("Take what?");
@@ -206,8 +210,11 @@ class Game {
 				System.out.println("Drop what?");
 			else
 				dropItem(command.getSecondWord());
-		} else if (commandWord.equals("i")) {
+		} else if (commandWord.equals("i") || commandWord.equals("inventory")) {
+			System.out.println("You have " + tokens + " tokens.");
 			System.out.println(inventory);
+		} else if (commandWord.equals("tokens")) {
+			System.out.println("You have " + tokens + " tokens.");
 		} else if (commandWord.equals("open")) {
 			if (!command.hasSecondWord())
 				System.out.println("Open what?");
@@ -218,9 +225,18 @@ class Game {
 			if (currentRoom.getRoomName().equals("The Kraken") || currentRoom.getRoomName().equals("The Logger") || currentRoom.getRoomName().equals("The Slippyest Slides")) {
 				// add tokens here
 			} else if (currentRoom.getRoomName().equals("The Ring")) {
-				// die
+				// you find 220 tokens on the first go, but die if you try again.
+				if (!hasRodeRing) {
+					// dont die
+					System.out.println("You got lucky even though you didnt pay attention to the sign, I wouldnt recomend trying again. You did however find 220 tokens by the exit of the ride!");
+					tokens += 220;
+					hasRodeRing = true;
+				}else{
+					System.out.println("You should have listend to the sign. The Coaster de-railed and you died. The score when you died was: " + tokens);
+					//return true;
+				}
 			} else if (currentRoom.getRoomName().equals("Fortune Teller") || currentRoom.getRoomName().equals("Defend The Park") || currentRoom.getRoomName().equals("You Lose Casino") || currentRoom.getRoomName().equals("Pool Party")) {
-
+				System.out.println("There is nothing to ride here, but you can \'play\'");
 			} else { // if you are not at a ride
 				System.out.println("You are not at a ride.");
 			}
