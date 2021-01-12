@@ -225,7 +225,14 @@ class Game {
 		} else if (commandWord.equals("ride")) {
 			// check what ride you are at
 			if (currentRoom.getRoomName().equals("The Kraken") || currentRoom.getRoomName().equals("The Logger") || currentRoom.getRoomName().equals("The Slippyest Slides")) {
-				// add tokens here
+				int rand = (int)(Math.random() * 4) + 1;
+				if (rand == 1) { // 1 in 4 chance of this happening
+					tokens += 30;
+					System.out.println("It cost 20 tokens to ride this, but you made such a funny face that the operator gave you 50 tokens in return. That means you gained 30 tokens!");
+				}else{
+					tokens -= 20;
+					System.out.println("Well that was fun");
+				}
 			} else if (currentRoom.getRoomName().equals("The Ring")) {
 				// you find 220 tokens on the first go, but die if you try again.
 				if (!hasRodeRing) {
@@ -238,9 +245,84 @@ class Game {
 					//return true;
 				}
 			} else if (currentRoom.getRoomName().equals("Fortune Teller") || currentRoom.getRoomName().equals("Defend The Park") || currentRoom.getRoomName().equals("You Lose Casino") || currentRoom.getRoomName().equals("Pool Party")) {
-				System.out.println("There is nothing to ride here, but you can \'play\'");
+				System.out.println("There is nothing to ride here, but you can \'play\' here.");
 			} else { // if you are not at a ride
 				System.out.println("You are not at a ride.");
+			}
+		}else if (commandWord.equals("play")) {
+			if (currentRoom.getRoomName().equals("Fortune Teller")) {
+				System.out.println();
+			} else if (currentRoom.getRoomName().equals("Pool Party")) {
+				lowerHungerThurst();
+				System.out.println("You swam. It was fun (ish).");
+			} else if (currentRoom.getRoomName().equals("You Lose Casino")) {
+				boolean done = false;
+				while (!done) {
+					// find out what they want to bet on
+					System.out.println("What would you like to bet on? (a, b, or c)\na) Horse racing\nb) BlackJack\nc) Poker");
+					Command casino = parser.getCommand();
+					String betType = casino.getCommandWord();
+					if (!betType.equals("a") && !betType.equals("b") && !betType.equals("c")){ // check if its valid
+						System.out.println("Please enter ether \"a\", \"b\", or \"c\".");
+						continue;
+					}
+
+					// find out how much they would like to bet
+					System.out.println("How much would you like to bet?  --  You have " + tokens + " tokens.");
+					boolean valid = false;
+					int bet = 0;
+					while (!valid) {
+						casino = parser.getCommand();
+						String betString = casino.getCommandWord();
+						try {
+							bet = Integer.parseInt(betString);
+							if (bet > tokens) {
+								System.out.println("You cannot afford this bet because you only have " + tokens + " tokens.");
+								continue;
+							}
+							
+						}catch(NumberFormatException e) {
+							System.out.println("Please enter a valid integer.");
+						}
+					}
+
+					tokens -= bet;
+					// find out what they earned/lost
+					if (betType.equals("a")) {
+						int win = (int)(Math.random() * 4) + 1;
+						if (win == 1) {
+							int earned = (int)(bet * ((Math.random() * 3) + 1));
+							tokens += earned;
+							System.out.println("The team you bet on won the horse race, you won " + earned + " tokens!");
+						}else{
+							System.out.println("The team you bet on lost the horse race, you now have " + tokens + " tokens.");
+						}
+					}else if (betType.equals("b")){
+						int win = (int)(Math.random() * 2) + 1;
+						if (win == 1) {
+							int earned = (int)(bet * (Math.random() + 1));
+							tokens += earned;
+							System.out.println("You won the Blackjack. You got " + earned + " tokens!");
+						}else{
+							System.out.println("You lost the Blackjack. You now have " + tokens + " tokens.");
+						}
+					}else {
+						int win = (int)(Math.random() * 3) + 1;
+						if (win == 1) {
+							int earned = (int)(bet * ((Math.random() * 2) + 1));
+							tokens += earned;
+							System.out.println("You won Poker. You got " + earned + " tokens!");
+						}else{
+							System.out.println("You lost Poker. You now have " + tokens + " tokens.");
+						}
+					}
+				}
+			} else if (currentRoom.getRoomName().equals("Defend The Park")) {
+				
+			} else if (currentRoom.getRoomName().equals("The Kraken") || currentRoom.getRoomName().equals("The Logger") || currentRoom.getRoomName().equals("The Slippyest Slides") || currentRoom.getRoomName().equals("The Ring")) {
+				System.out.println("There is nothing to play here, but you can \'ride\' here.");
+			} else {
+				System.out.println("There is nothing to play here.");
 			}
 		}
 		return false;
