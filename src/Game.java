@@ -183,6 +183,7 @@ class Game {
 			if (command.hasSecondWord())
 				System.out.println("Quit what?");
 			else
+				// need to check if room is Gate
 				return true; // signal that we want to quit
 		} else if (commandWord.equals("eat")) {
 			eat(command.getSecondWord());
