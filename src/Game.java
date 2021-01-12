@@ -179,12 +179,15 @@ class Game {
 			printHelp();
 		else if (commandWord.equals("go"))
 			goRoom(command);
-		else if (commandWord.equals("quit")) {
+		else if (commandWord.equals("leave")) {
 			if (command.hasSecondWord())
-				System.out.println("Quit what?");
+				System.out.println("leave what?");
 			else
-				// need to check if room is Gate
-				return true; // signal that we want to quit
+				// Check if room is Gate
+				if (currentRoom.getRoomName().equals("Gate"))
+					return true; // signal that we want to quit
+				else
+					System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
 		} else if (commandWord.equals("eat")) {
 			eat(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
