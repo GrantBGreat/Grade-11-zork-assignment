@@ -213,6 +213,17 @@ class Game {
 				System.out.println("Open what?");
 			else
 				openItem(command.getSecondWord());
+		} else if (commandWord.equals("ride")) {
+			// check what ride you are at
+			if (currentRoom.getRoomName().equals("The Kraken") || currentRoom.getRoomName().equals("The Logger") || currentRoom.getRoomName().equals("The Slippyest Slides")) {
+				// add tokens here
+			} else if (currentRoom.getRoomName().equals("The Ring")) {
+				// die
+			} else if (currentRoom.getRoomName().equals("Fortune Teller") || currentRoom.getRoomName().equals("Defend The Park") || currentRoom.getRoomName().equals("You Lose Casino") || currentRoom.getRoomName().equals("Pool Party")) {
+
+			} else { // if you are not at a ride
+				System.out.println("You are not at a ride.");
+			}
 		}
 		return false;
 	}
