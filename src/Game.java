@@ -383,7 +383,7 @@ class Game {
 
 		// lower hunger by a random number from 2 to 5
 		int hungerInterval = (int)(Math.random() * 4) + 2;
-		thurst -= thurstInterval;
+		hunger -= hungerInterval;
 
 		if (thurst <= 40 && hungerTold == 0) {
 			hungerTold = 1;
