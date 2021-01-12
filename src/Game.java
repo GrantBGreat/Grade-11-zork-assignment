@@ -3,22 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-/**
- * Class Game - the main class of the "Zork" game.
- *
- * Author: Michael Kolling Version: 1.1 Date: March 2000
- * 
- * This class is the main class of the "Zork" application. Zork is a very
- * simple, text based adventure game. Users can walk around some scenery. That's
- * all. It should really be extended to make it more interesting!
- * 
- * To play this game, create an instance of this class and call the "play"
- * routine.
- * 
- * This main class creates and initialises all the others: it creates all rooms,
- * creates the parser and starts the game. It also evaluates the commands that
- * the parser returns.
- */
 class Game {
 	private Parser parser;
 	private Room currentRoom;
@@ -26,13 +10,16 @@ class Game {
 	private int tokens;
 	private int hunger;
 	private int thurst;
+	// these check how much you have been told how hungery/thursty you are
+	private int thurstTold;
+	private int hungerTold;
+
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
 	// underscore -> Great Room would have a key of GREAT_ROOM
 	// In a hashmap keys are case sensitive.
 	// masterRoomMap.get("GREAT_ROOM") will return the Room Object that is the Great
-	// Room (assuming you have one).
 	private HashMap<String, Room> masterRoomMap;
 	private HashMap<String, Item> masterItemMap;
 
@@ -125,8 +112,10 @@ class Game {
 	 */
 	public Game() {
 		tokens = 500;
-		hunger = 1000;
-		thurst = 1000;
+		hunger = 100;
+		thurst = 100;
+		hungerTold = 0;
+		thurstTold = 0;
 		try {
 			initRooms("data/Rooms.dat");	// creates the map from the rooms.dat file
 			// initRooms is responsible for building/ initializing the masterRoomMap (private instance variable)
@@ -154,7 +143,20 @@ class Game {
 		boolean finished = false;
 		while (!finished) {
 			Command command = parser.getCommand();
-			finished = processCommand(command);
+			if (processCommand(command) || checkHungerThurst())
+				finished = true;
+		}
+	}
+
+	private boolean checkHungerThurst() {
+		if (hunger <= 0) {
+			System.out.println("You died of hunger.\nYour final score was " + tokens);
+			return true;
+		} else if (thurst <= 0) {
+			System.out.println("You died of thurst.\nYour final score was " + tokens);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -334,7 +336,7 @@ class Game {
 			System.out.println("Go where?");
 			return;
 		}
-		
+
 		String direction = command.getSecondWord();
 		if ("udeswn".indexOf(command.getCommandWord()) > -1) {
 			direction = command.getCommandWord();
@@ -355,11 +357,42 @@ class Game {
 // Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
 		if (nextRoom == null)
-			System.out.println("There is no door!");
+			System.out.println("You cannot go that way.");
 		else {
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
+			lowerHungerThurst();
 		}
 	}
 
+	private void lowerHungerThurst() {
+		// lower thurst by a random number from 3 to 7
+		int thurstInterval = (int)(Math.random() * 5) + 3;
+		thurst -= thurstInterval;
+
+		if (thurst <= 40 && thurstTold == 0) {
+			thurstTold = 1;
+			System.out.println("You're starting to feel thursty");
+		} else if (thurst <= 17 && thurstTold > 0) {
+			thurstTold = 2;
+			System.out.println("You're getting so thursty it hurts");
+		} else {
+			thurstTold = 0;
+		}
+
+
+		// lower hunger by a random number from 2 to 5
+		int hungerInterval = (int)(Math.random() * 4) + 2;
+		thurst -= thurstInterval;
+
+		if (thurst <= 40 && hungerTold == 0) {
+			hungerTold = 1;
+			System.out.println("You're starting to feel hungery");
+		} else if (thurst <= 15 && hungerTold > 0) {
+			hungerTold = 2;
+			System.out.println("You're getting so hungery it hurts");
+		} else {
+			hungerTold = 0;
+		}
+	}
 }
