@@ -242,7 +242,7 @@ class Game {
 					hasRodeRing = true;
 				}else{
 					System.out.println("You should have listend to the sign. The Coaster de-railed and you died. The score when you died was: " + tokens);
-					//return true;
+					return true;
 				}
 			} else if (currentRoom.getRoomName().equals("Fortune Teller") || currentRoom.getRoomName().equals("Defend The Park") || currentRoom.getRoomName().equals("You Lose Casino") || currentRoom.getRoomName().equals("Pool Party")) {
 				System.out.println("There is nothing to ride here, but you can \'play\' here.");
