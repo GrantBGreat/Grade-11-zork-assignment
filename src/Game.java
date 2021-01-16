@@ -165,10 +165,24 @@ class Game {
 	 */
 	private void printWelcome() {
 		System.out.println();
-		System.out.println("Welcome to Zork!");
-		System.out.println("Zork is a new, incredibly boring adventure game.");
-		System.out.println("Type 'help' if you need help.");
+		System.out.println("Welcome to Zork Themepark!");
+		System.out.println("Zork Themepark is a new, incredibly boring adventure game. In this game you run around going on rides and playing activitys in order to earn tokens. Your Goal is to have the largest amount of tokens when the game ends.");
+		System.out.println("Once you start, you can type 'help' to get a list of valid commands.");
+		System.out.println("Type \'ready\' when you are ready to play.");
 		System.out.println();
+
+		String ready = getInput();
+		boolean isDone = false;
+		while (!isDone) {
+			if (ready.toLowerCase().equals("ready")) {
+				isDone = true;
+				continue;
+			} else {
+				System.out.println("I'm waiting.");
+				ready = getInput();
+			}
+		}
+
 		System.out.println(currentRoom.longDescription());
 	}
 
@@ -476,5 +490,11 @@ class Game {
 		} else {
 			hungerTold = 0;
 		}
+	}
+
+	private String getInput() {
+		Scanner in = new Scanner(System.in);
+		System.out.print("> ");
+		return in.nextLine();
 	}
 }
