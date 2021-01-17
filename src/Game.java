@@ -274,8 +274,7 @@ class Game {
 				while (!done) {
 					// find out what they want to bet on
 					System.out.println("What would you like to bet on? (a, b, or c)\na) Horse racing\nb) BlackJack\nc) Poker");
-					Command casino = parser.getCommand();
-					String betType = casino.getCommandWord();
+					String betType = getInput();
 					if (!betType.equals("a") && !betType.equals("b") && !betType.equals("c")){ // check if its valid
 						System.out.println("Please enter ether \"a\", \"b\", or \"c\".");
 						continue;
@@ -286,14 +285,14 @@ class Game {
 					boolean valid = false;
 					int bet = 0;
 					while (!valid) {
-						casino = parser.getCommand();
-						String betString = casino.getCommandWord();
+						String betString = getInput();
 						try {
 							bet = Integer.parseInt(betString);
 							if (bet > tokens) {
 								System.out.println("You cannot afford this bet because you only have " + tokens + " tokens.");
 								continue;
 							}
+							valid = true;
 							
 						}catch(NumberFormatException e) {
 							System.out.println("Please enter a valid integer.");
@@ -328,6 +327,22 @@ class Game {
 							System.out.println("You won Poker. You got " + earned + " tokens!");
 						}else{
 							System.out.println("You lost Poker. You now have " + tokens + " tokens.");
+						}
+					}
+
+					System.out.println("Would you like to play again?");
+					boolean loop = true;
+					while (loop) {
+						String yn = getInput();
+						if (yn.equals("yes") || yn.equals("y")) {
+							System.out.println();
+							loop = false;
+						} else if (yn.equals("no") || yn.equals("n")) {
+							System.out.println("Have a nice day!");
+							done = true;
+							loop = false;
+						} else {
+							System.out.println("yes or no?");
 						}
 					}
 				}
