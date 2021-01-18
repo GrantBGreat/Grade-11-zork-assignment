@@ -496,10 +496,10 @@ class Game {
 		int hungerInterval = (int)(Math.random() * 4) + 2;
 		hunger -= hungerInterval;
 
-		if (thurst <= 40 && hungerTold == 0) {
+		if (hunger <= 40 && hungerTold == 0) {
 			hungerTold = 1;
 			System.out.println("You're starting to feel hungery");
-		} else if (thurst <= 15 && hungerTold > 0) {
+		} else if (hunger <= 15 && hungerTold > 0) {
 			hungerTold = 2;
 			System.out.println("You're getting so hungery it hurts");
 		} else {
