@@ -112,8 +112,10 @@ class Game {
 	 */
 	public Game() {
 		tokens = 500;
+		// this is the hunger and thurst %'s of the charicter
 		hunger = 100;
 		thurst = 100;
+		// these are the amounts of times you have been told you are hungery/thursty encoded as an int
 		hungerTold = 0;
 		thurstTold = 0;
 		try {
@@ -202,16 +204,13 @@ class Game {
 		else if (commandWord.equals("go"))
 			goRoom(command);
 		else if (commandWord.equals("leave")) {
-			if (command.hasSecondWord())
-				System.out.println("leave what?");
-			else
-				// Check if room is Gate
-				if (currentRoom.getRoomName().equals("Gate")) {
-					System.out.println("Thank you for attending. Hope to see you soon!\nYour score was: " + tokens);
-					return true; // signal that we want to quit
-				} else {
-					System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
-				}
+			// Check if room is Gate
+			if (currentRoom.getRoomName().equals("Gate")) {
+				System.out.println("Thank you for attending. Hope to see you soon!\nYour score was: " + tokens);
+				return true; // signal that we want to quit
+			} else {
+				System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
+			}
 		} else if (commandWord.equals("eat")) {
 			eat(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
@@ -226,7 +225,7 @@ class Game {
 				System.out.println("Drop what?");
 			else
 				dropItem(command.getSecondWord());
-		} else if (commandWord.equals("i") || commandWord.equals("inventory")) {
+		} else if (commandWord.equals("inventory")) {
 			System.out.println("You have " + tokens + " tokens.");
 			System.out.println(inventory);
 		} else if (commandWord.equals("tokens")) {
@@ -416,12 +415,17 @@ class Game {
 
 	private void sit() {
 		System.out.println("You are now sitting. You lazy excuse for a person.");
-		
 	}
 
 	private boolean jump() {
-		System.out.println("You jumped. Ouch you fell. You fell hard. Really hard. You are getting sleepy. Very sleepy! Yuo are dead!");
-		return true;
+		// all haunted house rooms you die, otherwise nothing happens
+		if (currentRoom.getRoomName().equals("Haunted House Enterance") || currentRoom.getRoomName().equals("Bottom of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top floor hall")) {
+			System.out.println("You jumped and fell through the floorboards. You died.\nYour final score was " + tokens);
+			return true;
+		} else {
+			System.out.println("You jumped. Why? Why not?\nSome people are staring at you");
+			return false;
+		}
 	}
 
 // implementations of user commands:
@@ -430,8 +434,8 @@ class Game {
 	 * and a list of the command words.
 	 */
 	private void printHelp() {
-		System.out.println("You are lost. You are alone. You wander");
-		System.out.println("around at Monash Uni, Peninsula Campus.");
+		System.out.println("So much to do as you walk");
+		System.out.println("around at Zork Themepark");
 		System.out.println();
 		System.out.println("Your command words are:");
 		parser.showCommands();

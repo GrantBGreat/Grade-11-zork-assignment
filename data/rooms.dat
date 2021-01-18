@@ -39,7 +39,7 @@ Room Description: You are at the bottom of the stairs.
 Exit Rooms: U-Top of Haunted House Stairwell
 Room Name: Top of Haunted House Stairwell
 Room Description:  You are at the top of the stairs. 
-Exit Rooms: E-Top floor hall
+Exit Rooms: E-Top floor hall, D-Bottom of Haunted House Stairwell
 Room Name: Top floor hall
 Room Description:  You in a hall on the top floor
 Exit Rooms: W-Top of Haunted House Stairwell
