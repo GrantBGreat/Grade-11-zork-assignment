@@ -213,6 +213,8 @@ class Game {
 			}
 		} else if (commandWord.equals("eat")) {
 			eat(command.getSecondWord());
+		} else if (commandWord.equals("drink")) {
+			drink(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
 			return jump();
 		} else if (commandWord.equals("take")) {
@@ -220,6 +222,11 @@ class Game {
 				System.out.println("Take what?");
 			else
 				takeItem(command.getSecondWord());
+		} else if (commandWord.equals("buy")) {
+			if (!command.hasSecondWord())
+				System.out.println("buy what?");
+			else
+				buyItem(command.getSecondWord());
 		} else if (commandWord.equals("drop")) {
 			if (!command.hasSecondWord())
 				System.out.println("Drop what?");
@@ -372,20 +379,72 @@ class Game {
 		
 		Item item = temp.removeItem(itemName);
 		
+		if (currentRoom.getRoomName().equals("Bobby's Burger Shop") || currentRoom.getRoomName().equals("Just Juice") || currentRoom.getRoomName().equals("Papa's Pizzaria")) {
+			System.out.println("You have to \'buy\' items here.");
+			return;
+		}
+
 		if (item != null) {
 			if (inventory.addItem(item)) {
 				System.out.println("You have taken the " + itemName);
-				
-				if (currentRoom.getRoomName().equals("Hallway") &&  itemName.equals("ball")) {
-					currentRoom = masterRoomMap.get("ATTIC");
-					System.out.println("You seem to be lying on the floor all confused. It seems you have been here for a while.\n");
-					System.out.println(currentRoom.longDescription());
-				}
 			}else {
 				System.out.println("You were unable to take the " + itemName);
 			}
 		}else {
 			System.out.println("There is no " + itemName + " here.");
+		}
+	}
+
+	private void buyItem(String itemName) {
+		if (!currentRoom.getRoomName().equals("Bobby's Burger Shop") && !currentRoom.getRoomName().equals("Just Juice") && !currentRoom.getRoomName().equals("Papa's Pizzaria")) {
+			System.out.println("You cannot \'buy\' items here.");
+			return;
+		}
+
+		if (hunger == 100) {
+			System.out.println("You are not hungery");
+			return;
+		}
+
+		Inventory temp = currentRoom.getInventory();
+		System.out.println(itemName);
+
+		if (itemName.equals("burger")) {
+			Item item = temp.removeItem("burgerbag");
+			if (item != null) {
+				if (inventory.addItem(item)) {
+					System.out.println("You have bought the " + itemName + " it came in a openable \'burgerbag\'");
+					tokens -= 15;
+				}else {
+					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
+				}
+			}else {
+				System.out.println("There is no " + itemName + " here.");
+			}
+		} else if (itemName.equals("pizza")) {
+			Item item = temp.removeItem("pizzabox");
+			if (item != null) {
+				if (inventory.addItem(item)) {
+					System.out.println("You have bought the " + itemName + " it came in a openable \'pizzabox\'");
+					tokens -= 10;
+				}else {
+					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
+				}
+			}else {
+				System.out.println("There is no " + itemName + " here.");
+			}
+		} else if (itemName.equals("juice")) {
+			Item item = temp.removeItem("juice");
+			if (item != null) {
+				if (inventory.addItem(item)) {
+					System.out.println("You have bought the " + itemName);
+					tokens -= 5;
+				}else {
+					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
+				}
+			}else {
+				System.out.println("There is no " + itemName + " here.");
+			}
 		}
 	}
 	
@@ -404,22 +463,40 @@ class Game {
 	}
 
 	private void eat(String secondWord) {
-		if (secondWord.equals("steak"))
-			System.out.println("YUMMY");
-		else if (secondWord.equals("bread"))
-			System.out.println("I don't eat carbs...");
-		else 
-			System.out.println("You are the " + secondWord);
-		
+		if (secondWord.equals("pizza")) {
+			System.out.println("You ate the pizza.");
+			hunger += 75;
+			if (hunger > 100)
+				hunger = 100;
+		} else if (secondWord.equals("burger")) {
+			System.out.println("You ate the burger");
+			hunger = 100;
+		} else {
+			System.out.println("You cannot eat a " + secondWord);
+		}
 	}
 
-	private void sit() {
-		System.out.println("You are now sitting. You lazy excuse for a person.");
+	private void drink(String secondWord) {
+		if (secondWord.equals("juice")) {
+			Item item = inventory.removeItem(secondWord);
+			if (item != null) {
+				if (thurst == 100) {
+					System.out.println("You are not thursty.");
+				} else {
+					System.out.println("You drank the juice.");
+					thurst = 100;
+				}
+			}else {
+				System.out.println("You do not have any juice on you.");
+			}
+		} else {
+			System.out.println("You cannot drink that.");
+		}
 	}
 
 	private boolean jump() {
 		// all haunted house rooms you die, otherwise nothing happens
-		if (currentRoom.getRoomName().equals("Haunted House Enterance") || currentRoom.getRoomName().equals("Bottom of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top floor hall")) {
+		if (currentRoom.getRoomName().equals("Haunted House Enterance") || currentRoom.getRoomName().equals("Bottom of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top floor hall") || currentRoom.getRoomName().equals("Top floor room") || currentRoom.getRoomName().equals("Haunted House Room")) {
 			System.out.println("You jumped and fell through the floorboards. You died.\nYour final score was " + tokens);
 			return true;
 		} else {

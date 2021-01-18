@@ -34,6 +34,9 @@ Exit Rooms: W-Bloods Point Road, E-Haunted House Enterance
 Room Name: Haunted House Enterance
 Room Description:  The door slams shut behind you! Now you really want out, but you have to find a way.
 Exit Rooms: E-Bottom of Haunted House Stairwell
+Room Name: Haunted House Room
+Room Description:  You see a window that you can escape through.
+Exit Rooms: E-Haunted House Enterance
 Room Name: Bottom of Haunted House Stairwell
 Room Description: You are at the bottom of the stairs. 
 Exit Rooms: U-Top of Haunted House Stairwell
@@ -41,8 +44,11 @@ Room Name: Top of Haunted House Stairwell
 Room Description:  You are at the top of the stairs. 
 Exit Rooms: E-Top floor hall, D-Bottom of Haunted House Stairwell
 Room Name: Top floor hall
-Room Description:  You in a hall on the top floor
+Room Description:  You in a hall on the top floor, you see a room at the end.
 Exit Rooms: W-Top of Haunted House Stairwell
+Room Name: Top floor room
+Room Description:  You in the only room on the top floor. You see 300 tokens in the corner. Use 'take tokens' to grab them.
+Exit Rooms: W-Top floor hall
 Room Name: Fortune Teller
 Room Description:  You see an old lady with a crystal ball. She asks if you would like to see your fortune for 5 tokens?
 Exit Rooms: S-Bloods Point Road
