@@ -9,12 +9,12 @@ Room: PAPA'S PIZZARIA
 Item Name: juice
 Item Description: A brown paper bag
 Openable: false
-Room: JUST JUICE
+Room: JUST-JUICE
 Item Name: burger
 Item Description: A tasty burger
 Openable: false
-Room: Null
+Room: BOBBY'S-BURGER-SHOP
 Item Name: pizza
 Item Description: A tasty pizza
 Openable: false
-Room: Null
+Room: PAPA'S-PIZZARIA

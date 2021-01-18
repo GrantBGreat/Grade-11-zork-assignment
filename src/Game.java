@@ -212,7 +212,7 @@ class Game {
 				System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
 			}
 		} else if (commandWord.equals("eat")) {
-			eat(command.getSecondWord());
+			return eat(command.getSecondWord());
 		} else if (commandWord.equals("drink")) {
 			drink(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
@@ -271,7 +271,7 @@ class Game {
 			}
 		}else if (commandWord.equals("play")) {
 			if (currentRoom.getRoomName().equals("Fortune Teller")) {
-				System.out.println();
+				System.out.println("The fortune teller told you:\nYour hunger is at %" + hunger + ".\nYour thurst is at %" + thurst + ".\nYou seem like an unlucky person.");
 			} else if (currentRoom.getRoomName().equals("Pool Party")) {
 				lowerHungerThurst();
 				System.out.println("You swam. It was fun (ish).");
@@ -410,7 +410,6 @@ class Game {
 		}
 
 		Inventory temp = currentRoom.getInventory();
-		System.out.println(itemName);
 
 		if (itemName.equals("burger")) {
 			Item item = temp.removeItem("burgerbag");
@@ -465,7 +464,13 @@ class Game {
 		}
 	}
 
-	private void eat(String secondWord) {
+	private boolean eat(String secondWord) {
+		// get kicked out at the pool
+		if (currentRoom.getRoomName().equals("Pool Party")) {
+			System.out.println("You got kicked out for eating at the pool.\nThe score when you lost was: " + tokens);
+			return true;
+		}
+
 		if (secondWord.equals("pizza")) {
 			System.out.println("You ate the pizza.");
 			hunger += 75;
@@ -477,6 +482,8 @@ class Game {
 		} else {
 			System.out.println("You cannot eat a " + secondWord);
 		}
+
+		return false;
 	}
 
 	private void drink(String secondWord) {
