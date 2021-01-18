@@ -353,7 +353,15 @@ class Game {
 					}
 				}
 			} else if (currentRoom.getRoomName().equals("Defend The Park")) {
-				
+				int changeRand = (int)(Math.random() * 3);
+
+				if (changeRand >= 1) {
+					tokens += 50;
+					System.out.println("You won 50 tokens!");
+				} else {
+					tokens -= 50;
+					System.out.println("You lost 50 tokens!");
+				}
 			} else if (currentRoom.getRoomName().equals("The Kraken") || currentRoom.getRoomName().equals("The Logger") || currentRoom.getRoomName().equals("The Slippyest Slides") || currentRoom.getRoomName().equals("The Ring")) {
 				System.out.println("There is nothing to play here, but you can \'ride\' here.");
 			} else {
