@@ -409,11 +409,6 @@ class Game {
 			return;
 		}
 
-		if (hunger == 100) {
-			System.out.println("You are not hungery");
-			return;
-		}
-
 		Inventory temp = currentRoom.getInventory();
 		System.out.println(itemName);
 
