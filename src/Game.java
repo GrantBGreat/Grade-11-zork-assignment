@@ -401,6 +401,7 @@ class Game {
 			return;
 		}
 
+		// if they had dropped an item on the ground
 		if (item != null) {
 			if (inventory.addItem(item)) {
 				System.out.println("You have taken the " + itemName);
@@ -408,7 +409,7 @@ class Game {
 				System.out.println("You were unable to take the " + itemName);
 			}
 		}else {
-			System.out.println("There is no " + itemName + " here.");
+			System.out.println("There is no " + itemName + " here, silly.");
 		}
 	}
 
