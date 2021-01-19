@@ -212,9 +212,15 @@ class Game {
 				System.out.println("You need to be at the Gate to leave the park. The Gate is at the far south end of the park.");
 			}
 		} else if (commandWord.equals("eat")) {
-			return eat(command.getSecondWord());
+			if (!command.hasSecondWord())
+				System.out.println("Eat what?");
+			else
+				return eat(command.getSecondWord());
 		} else if (commandWord.equals("drink")) {
-			drink(command.getSecondWord());
+			if (!command.hasSecondWord())
+				System.out.println("Drink what?");
+			else
+				drink(command.getSecondWord());
 		} else if (commandWord.equals("jump")) {
 			return jump();
 		} else if (commandWord.equals("take")) {
