@@ -9,6 +9,7 @@ class Game {
 	private Room currentRoom;
 	private Inventory inventory;
 	private int tokens;
+	private boolean hauntedGrab;
 	private int hunger;
 	private int thurst;
 	// these check how much you have been told how hungery/thirsty you are
@@ -113,6 +114,7 @@ class Game {
 	 */
 	public Game() {
 		tokens = 500;
+		hauntedGrab = false;
 		// this is the hunger and thurst %'s of the charicter
 		hunger = 100;
 		thurst = 100;
@@ -399,6 +401,11 @@ class Game {
 		if (currentRoom.getRoomName().equals("Bobby's Burger Shop") || currentRoom.getRoomName().equals("Just Juice") || currentRoom.getRoomName().equals("Papa's Pizzaria")) {
 			System.out.println("You have to \'buy\' items here.");
 			return;
+		} else if (currentRoom.getRoomName().equals("Top floor room") && !hauntedGrab && itemName.equals("tokens")) {
+			System.out.println("You grabbed 300 tokens from the room.");
+			hauntedGrab = true; // you have grabbed the tokens from this room
+			tokens += 300;
+			return;
 		}
 
 		// if they had dropped an item on the ground
@@ -409,7 +416,7 @@ class Game {
 				System.out.println("You were unable to take the " + itemName);
 			}
 		}else {
-			System.out.println("There is no " + itemName + " here, silly.");
+			System.out.println("There are no " + itemName + " here, silly.");
 		}
 	}
 
