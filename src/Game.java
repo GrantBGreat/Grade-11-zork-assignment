@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -382,6 +383,8 @@ class Game {
 		
 		if(item != null) {
 			System.out.println(item.displayContents());
+			ArrayList<Item> items = item.getInventory().removeAll();
+			inventory.addAll(items);
 		}else {
 			System.out.println("What is it that you think you have but do not.");
 		}

@@ -74,6 +74,14 @@ public class Item {
 	public String displayContents() {
 		if (!isOpenable) return null;
 
+		if (items.isEmpty()) {
+			return "The " + name + " is empty.";
+		}
+
 		return "The " + name + " contains:\n" + items;
+	}
+
+	public Inventory getInventory() {
+		return items;
 	}
 }
