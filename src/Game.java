@@ -10,7 +10,7 @@ class Game {
 	private int tokens;
 	private int hunger;
 	private int thurst;
-	// these check how much you have been told how hungery/thursty you are
+	// these check how much you have been told how hungery/thirsty you are
 	private int thurstTold;
 	private int hungerTold;
 
@@ -115,7 +115,7 @@ class Game {
 		// this is the hunger and thurst %'s of the charicter
 		hunger = 100;
 		thurst = 100;
-		// these are the amounts of times you have been told you are hungery/thursty encoded as an int
+		// these are the amounts of times you have been told you are hungery/thirsty encoded as an int
 		hungerTold = 0;
 		thurstTold = 0;
 		try {
@@ -491,7 +491,7 @@ class Game {
 			Item item = inventory.removeItem(secondWord);
 			if (item != null) {
 				if (thurst == 100) {
-					System.out.println("You are not thursty.");
+					System.out.println("You are not thirsty.");
 				} else {
 					System.out.println("You drank the juice.");
 					thurst = 100;
@@ -574,10 +574,10 @@ class Game {
 
 		if (thurst <= 40 && thurstTold == 0) {
 			thurstTold = 1;
-			System.out.println("You're starting to feel thursty");
+			System.out.println("You're starting to feel thirsty");
 		} else if (thurst <= 17 && thurstTold > 0) {
 			thurstTold = 2;
-			System.out.println("You're getting so thursty it hurts");
+			System.out.println("You're getting so thirsty it hurts");
 		} else {
 			thurstTold = 0;
 		}
