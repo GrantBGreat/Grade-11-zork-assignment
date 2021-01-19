@@ -5,7 +5,7 @@ Room Name: Main Path
 Room Description:  This is the main path for the park. Stop waisting your time here.
 Exit Rooms: W-Roller Road, E-Bloods Point Road, S-Gate, N-Main Path North
 Room Name: Roller Road
-Room Description:  You are on a West path of the park. You hear the screeming of roller coasters.
+Room Description:  You are on a West path of the park. You hear the screaming of roller coasters.
 Exit Rooms: E-Main Path, W-The Kraken, N-The Ring
 Room Name: Bloods Point Road
 Room Description:  You are on an East path of the park. Shivers get sent down your spine. There is one thing on this road and its a house at the very end.
@@ -24,7 +24,7 @@ Room Description:  You are on an East path of the park. You hear pew pew sounds 
 Exit Rooms: W-Main Path North, N-Defend The Park, E-You Lose Casino
 Room Name: The Kraken
 Room Description:  This coaster looks fun! It costs 20 tokens to ride.
-Exit Rooms: W-Roller Road
+Exit Rooms: E-Roller Road
 Room Name: The Ring
 Room Description:  You see a sign on the sign on the ride that says "under construction"
 Exit Rooms: S-Roller Road
@@ -33,10 +33,10 @@ Room Description:  This place seems real scarry. You have to decide, turn back o
 Exit Rooms: W-Bloods Point Road, E-Haunted House Enterance
 Room Name: Haunted House Enterance
 Room Description:  The door slams shut behind you! Now you really want out, but you have to find a way.
-Exit Rooms: E-Bottom of Haunted House Stairwell
+Exit Rooms: E-Bottom of Haunted House Stairwell, N-Haunted House Room
 Room Name: Haunted House Room
 Room Description:  You see a window that you can escape through.
-Exit Rooms: E-Haunted House Enterance
+Exit Rooms: E-Haunted House Enterance, W-Haunted House Yard
 Room Name: Bottom of Haunted House Stairwell
 Room Description: You are at the bottom of the stairs. 
 Exit Rooms: U-Top of Haunted House Stairwell
