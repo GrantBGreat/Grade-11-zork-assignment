@@ -124,22 +124,27 @@ public class Room {
     return (Room) exits.get(direction);
   }
 
+  // returns the rooms name
   public String getRoomName() {
     return roomName;
   }
 
+  // set the rooms name
   public void setRoomName(String roomName) {
     this.roomName = roomName;
   }
 
+  // get the description of a room
   public String getDescription() {
     return description;
   }
 
+  // set the description of a room
   public void setDescription(String description) {
     this.description = description;
   }
 
+  // get the inv of items in a room
   public Inventory getInventory() {
     return inventory;
   }

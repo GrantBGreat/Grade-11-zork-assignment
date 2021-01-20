@@ -25,7 +25,7 @@ class Game {
 	private HashMap<String, Room> masterRoomMap;
 	private HashMap<String, Item> masterItemMap;
 
-
+	// create item map
 	private void initItems(String fileName) throws Exception{
 		Scanner itemScanner;
 		masterItemMap = new HashMap<String, Item>();
@@ -57,6 +57,7 @@ class Game {
 		}
 	}
 	
+	// create room map
 	private void initRooms(String fileName) throws Exception {
 		masterRoomMap = new HashMap<String, Room>();
 		Scanner roomScanner;
@@ -126,7 +127,7 @@ class Game {
 			// initRooms is responsible for building/ initializing the masterRoomMap (private instance variable)
 			currentRoom = masterRoomMap.get("GATE");	// the key for the masterRoomMap is the name of the room all in Upper Case (spaces replaced with _)
 			inventory = new Inventory();
-			initItems("data/items.dat");
+			initItems("data/items.dat");	// creates the item map from the items.dat file
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -148,7 +149,7 @@ class Game {
 		boolean finished = false;
 		while (!finished) {
 			Command command = parser.getCommand();
-			if (processCommand(command) || checkHungerthirst())
+			if (processCommand(command) || checkHungerthirst()) // if you die during a command, or die from hunger/thirsty
 				finished = true;
 		}
 	}
@@ -176,6 +177,7 @@ class Game {
 		System.out.println("Type \'ready\' when you are ready to start.");
 		System.out.println();
 
+		// Make the user input before the game starts
 		String ready = getInput();
 		boolean isDone = false;
 		while (!isDone) {
@@ -191,7 +193,7 @@ class Game {
 		System.out.println(currentRoom.longDescription());
 	}
 
-	private boolean hasRodeRing;
+	private boolean hasRodeRing; // if this is true then you die the next time you ride the ring
 	/**
 	 * Given a command, process (that is: execute) the command. If this command ends
 	 * the game, true is returned, otherwise false is returned.
@@ -345,6 +347,7 @@ class Game {
 						}
 					}
 
+					// check if the user wants to play again
 					System.out.println("Would you like to play again?");
 					boolean loop = true;
 					while (loop) {
@@ -394,6 +397,7 @@ class Game {
 		
 	}
 
+	// take an item off the ground. This works only for items that have been dropped by the player.
 	private void takeItem(String itemName) {
 		Inventory temp = currentRoom.getInventory();
 		
@@ -421,14 +425,16 @@ class Game {
 		}
 	}
 
+	// to buy items from the shops:
 	private void buyItem(String itemName) {
+		// you cant buy if your not at a shop
 		if (!currentRoom.getRoomName().equals("Bobby's Burger Shop") && !currentRoom.getRoomName().equals("Just Juice") && !currentRoom.getRoomName().equals("Papa's Pizzaria")) {
 			System.out.println("You cannot \'buy\' items here.");
 			return;
 		}
 
 		Inventory temp = currentRoom.getInventory();
-
+		// what are they buying?
 		if (itemName.equals("burger")) {
 			Item item = temp.contains("burgerbag");
 			if (inventory.addItem(item)) {
@@ -460,6 +466,7 @@ class Game {
 		}
 	}
 	
+	// drop a given item:
 	private void dropItem(String itemName) {
 		Item item = inventory.removeItem(itemName);
 		
@@ -474,8 +481,9 @@ class Game {
 		}
 	}
 
+	// eat a given food
 	private boolean eat(String secondWord) {
-		// get kicked out at the pool
+		// get kicked out if you are at the pool
 		if (currentRoom.getRoomName().equals("Pool Party")) {
 			System.out.println("You got kicked out for eating at the pool.\nThe score when you lost was: " + tokens);
 			return true;
@@ -498,6 +506,7 @@ class Game {
 		return false;
 	}
 
+	// drink a given drink
 	private void drink(String secondWord) {
 		if (secondWord.equals("juice")) {
 			Item item = inventory.removeItem(secondWord);
@@ -516,6 +525,10 @@ class Game {
 		}
 	}
 
+	/**
+	 * jump command
+	 * This command is uterly usless. If you are at the Haunted House, you die. Otherwise, everyone just stares at you.
+	 */
 	private boolean jump() {
 		// all haunted house rooms you die, otherwise nothing happens
 		if (currentRoom.getRoomName().equals("Haunted House Enterance") || currentRoom.getRoomName().equals("Bottom of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top of Haunted House Stairwell") || currentRoom.getRoomName().equals("Top floor hall") || currentRoom.getRoomName().equals("Top floor room") || currentRoom.getRoomName().equals("Haunted House Room")) {
@@ -579,6 +592,7 @@ class Game {
 		}
 	}
 
+	// lowers the hunger and thirst levels of the player every time a command is run
 	private void lowerHungerthirst() {
 		// lower thirst by a random number from 3 to 7
 		int thirstInterval = (int)(Math.random() * 5) + 3;
@@ -610,6 +624,7 @@ class Game {
 		}
 	}
 
+	// get an input from the console and return the given string
 	private String getInput() {
 		Scanner in = new Scanner(System.in);
 		System.out.print("> ");
