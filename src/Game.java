@@ -173,7 +173,7 @@ class Game {
 		System.out.println("Welcome to Zork Themepark!");
 		System.out.println("Zork Themepark is a new, incredibly boring adventure game. In this game you run around going on rides and playing activitys in order to earn tokens. Your Goal is to have the largest amount of tokens when the game ends.");
 		System.out.println("Once you start, you can type 'help' to get a list of valid commands.");
-		System.out.println("Type \'ready\' when you are ready to play.");
+		System.out.println("Type \'ready\' when you are ready to start.");
 		System.out.println();
 
 		String ready = getInput();
@@ -387,6 +387,7 @@ class Game {
 			System.out.println(item.displayContents());
 			ArrayList<Item> items = item.getInventory().removeAll();
 			inventory.addAll(items);
+			inventory.removeItem(itemName);
 		}else {
 			System.out.println("What is it that you think you have but do not.");
 		}
@@ -429,40 +430,28 @@ class Game {
 		Inventory temp = currentRoom.getInventory();
 
 		if (itemName.equals("burger")) {
-			Item item = temp.removeItem("burgerbag");
-			if (item != null) {
-				if (inventory.addItem(item)) {
-					System.out.println("You have bought the " + itemName + " it came in a openable \'burgerbag\'");
-					tokens -= 15;
-				}else {
-					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
-				}
+			Item item = temp.contains("burgerbag");
+			if (inventory.addItem(item)) {
+				System.out.println("You have bought the " + itemName + " it came in a openable \'burgerbag\'");
+				tokens -= 15;
 			}else {
-				System.out.println("There is no " + itemName + " here.");
+				System.out.println("You were unable to buy the " + itemName + ". You already have one!");
 			}
 		} else if (itemName.equals("pizza")) {
-			Item item = temp.removeItem("pizzabox");
-			if (item != null) {
-				if (inventory.addItem(item)) {
-					System.out.println("You have bought the " + itemName + " it came in a openable \'pizzabox\'");
-					tokens -= 10;
-				}else {
-					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
-				}
+			Item item = temp.contains("pizzabox");
+			if (inventory.addItem(item)) {
+				System.out.println("You have bought the " + itemName + " it came in a openable \'pizzabox\'");
+				tokens -= 10;
 			}else {
-				System.out.println("There is no " + itemName + " here.");
+				System.out.println("You were unable to buy the " + itemName + ". You already have one!");
 			}
 		} else if (itemName.equals("juice")) {
-			Item item = temp.removeItem("juice");
-			if (item != null) {
-				if (inventory.addItem(item)) {
-					System.out.println("You have bought the " + itemName);
-					tokens -= 5;
-				}else {
-					System.out.println("You were unable to buy the " + itemName + ". It is likely sold out.");
-				}
+			Item item = temp.contains("juice");
+			if (inventory.addItem(item)) {
+				System.out.println("You have bought the " + itemName);
+				tokens -= 5;
 			}else {
-				System.out.println("There is no " + itemName + " here.");
+				System.out.println("You were unable to buy the " + itemName + ". You already have one!");
 			}
 		} else if (itemName.equals("drink") && currentRoom.getRoomName().equals("Just Juice")) {
 			System.out.println("You can only buy \'juice\' here.");
@@ -493,11 +482,13 @@ class Game {
 		}
 
 		if (secondWord.equals("pizza")) {
+			inventory.removeItem("pizza");
 			System.out.println("You ate the pizza.");
 			hunger += 75;
 			if (hunger > 100)
 				hunger = 100;
 		} else if (secondWord.equals("burger")) {
+			inventory.removeItem("burger");
 			System.out.println("You ate the burger");
 			hunger = 100;
 		} else {

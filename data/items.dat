@@ -13,7 +13,7 @@ Room: JUST_JUICE
 Item Name: burger
 Item Description: A tasty burger
 Openable: false
-Room: BOBBY'S_BURGER_SHOP
+Item: BURGERBAG
 Item Name: pizza
 Item Description: A tasty pizza
 Openable: false

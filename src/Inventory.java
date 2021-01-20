@@ -8,6 +8,9 @@ public class Inventory {
     }
 
     public boolean addItem(Item item) {
+        if (items.contains(item))
+            return false;
+            
         return items.add(item);
     }
 
