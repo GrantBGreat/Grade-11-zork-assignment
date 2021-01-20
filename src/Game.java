@@ -11,9 +11,9 @@ class Game {
 	private int tokens;
 	private boolean hauntedGrab;
 	private int hunger;
-	private int thurst;
-	// these check how much you have been told how hungery/thirsty you are
-	private int thurstTold;
+	private int thirst;
+	// these check how much you have been told how hungry/thirsty you are
+	private int thirstTold;
 	private int hungerTold;
 
 	// This is a MASTER object that contains all of the rooms and is easily
@@ -115,12 +115,12 @@ class Game {
 	public Game() {
 		tokens = 500;
 		hauntedGrab = false;
-		// this is the hunger and thurst %'s of the charicter
+		// this is the hunger and thirst %'s of the charicter
 		hunger = 100;
-		thurst = 100;
-		// these are the amounts of times you have been told you are hungery/thirsty encoded as an int
+		thirst = 100;
+		// these are the amounts of times you have been told you are hungry/thirsty encoded as an int
 		hungerTold = 0;
-		thurstTold = 0;
+		thirstTold = 0;
 		try {
 			initRooms("data/Rooms.dat");	// creates the map from the rooms.dat file
 			// initRooms is responsible for building/ initializing the masterRoomMap (private instance variable)
@@ -148,17 +148,17 @@ class Game {
 		boolean finished = false;
 		while (!finished) {
 			Command command = parser.getCommand();
-			if (processCommand(command) || checkHungerThurst())
+			if (processCommand(command) || checkHungerthirst())
 				finished = true;
 		}
 	}
 
-	private boolean checkHungerThurst() {
+	private boolean checkHungerthirst() {
 		if (hunger <= 0) {
 			System.out.println("You died of hunger.\nYour final score was " + tokens);
 			return true;
-		} else if (thurst <= 0) {
-			System.out.println("You died of thurst.\nYour final score was " + tokens);
+		} else if (thirst <= 0) {
+			System.out.println("You died of thirst.\nYour final score was " + tokens);
 			return true;
 		} else {
 			return false;
@@ -280,9 +280,9 @@ class Game {
 			}
 		}else if (commandWord.equals("play")) {
 			if (currentRoom.getRoomName().equals("Fortune Teller")) {
-				System.out.println("The fortune teller told you:\nYour hunger is at %" + hunger + ".\nYour thurst is at %" + thurst + ".\nYou seem like an unlucky person.");
+				System.out.println("The fortune teller told you:\nYour hunger is at %" + hunger + ".\nYour thirst is at %" + thirst + ".\nYou seem like an unlucky person.");
 			} else if (currentRoom.getRoomName().equals("Pool Party")) {
-				lowerHungerThurst();
+				lowerHungerthirst();
 				System.out.println("You swam. It was fun (ish).");
 			} else if (currentRoom.getRoomName().equals("You Lose Casino")) {
 				boolean done = false;
@@ -362,7 +362,7 @@ class Game {
 					}
 				}
 			} else if (currentRoom.getRoomName().equals("Defend The Park")) {
-				int changeRand = (int)(Math.random() * 3);
+				int changeRand = (int)(Math.random() * 2.5);
 
 				if (changeRand >= 1) {
 					tokens += 50;
@@ -464,6 +464,10 @@ class Game {
 			}else {
 				System.out.println("There is no " + itemName + " here.");
 			}
+		} else if (itemName.equals("drink") && currentRoom.getRoomName().equals("Just Juice")) {
+			System.out.println("You can only buy \'juice\' here.");
+		} else {
+			System.out.println("You cant buy that!");
 		}
 	}
 	
@@ -507,11 +511,11 @@ class Game {
 		if (secondWord.equals("juice")) {
 			Item item = inventory.removeItem(secondWord);
 			if (item != null) {
-				if (thurst == 100) {
+				if (thirst == 100) {
 					System.out.println("You are not thirsty.");
 				} else {
 					System.out.println("You drank the juice.");
-					thurst = 100;
+					thirst = 100;
 				}
 			}else {
 				System.out.println("You do not have any juice on you.");
@@ -580,23 +584,23 @@ class Game {
 		else {
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
-			lowerHungerThurst();
+			lowerHungerthirst();
 		}
 	}
 
-	private void lowerHungerThurst() {
-		// lower thurst by a random number from 3 to 7
-		int thurstInterval = (int)(Math.random() * 5) + 3;
-		thurst -= thurstInterval;
+	private void lowerHungerthirst() {
+		// lower thirst by a random number from 3 to 7
+		int thirstInterval = (int)(Math.random() * 5) + 3;
+		thirst -= thirstInterval;
 
-		if (thurst <= 40 && thurstTold == 0) {
-			thurstTold = 1;
+		if (thirst <= 40 && thirstTold == 0) {
+			thirstTold = 1;
 			System.out.println("You're starting to feel thirsty");
-		} else if (thurst <= 17 && thurstTold > 0) {
-			thurstTold = 2;
+		} else if (thirst <= 17 && thirstTold > 0) {
+			thirstTold = 2;
 			System.out.println("You're getting so thirsty it hurts");
 		} else {
-			thurstTold = 0;
+			thirstTold = 0;
 		}
 
 
@@ -606,10 +610,10 @@ class Game {
 
 		if (hunger <= 40 && hungerTold == 0) {
 			hungerTold = 1;
-			System.out.println("You're starting to feel hungery");
+			System.out.println("You're starting to feel hungry");
 		} else if (hunger <= 15 && hungerTold > 0) {
 			hungerTold = 2;
-			System.out.println("You're getting so hungery it hurts");
+			System.out.println("You're getting so hungry it hurts");
 		} else {
 			hungerTold = 0;
 		}

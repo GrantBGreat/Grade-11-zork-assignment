@@ -2,7 +2,7 @@ Room Name: Gate
 Room Description:  This is the gate of the park. Here you start your game, but you also come here to end your game. It is at the far South of the park.
 Exit Rooms: N-Main Path
 Room Name: Main Path
-Room Description:  This is the main path for the park. Stop waisting your time here.
+Room Description:  This is the main path for the park. Stop wasting your time here.
 Exit Rooms: W-Roller Road, E-Bloods Point Road, S-Gate, N-Main Path North
 Room Name: Roller Road
 Room Description:  You are on a West path of the park. You hear the screaming of roller coasters.
@@ -29,14 +29,14 @@ Room Name: The Ring
 Room Description:  You see a sign on the sign on the ride that says "under construction"
 Exit Rooms: S-Roller Road
 Room Name: Haunted House Yard
-Room Description:  This place seems real scarry. You have to decide, turn back or enter the house?
+Room Description:  This place seems real scary. You have to decide, turn back or enter the house?
 Exit Rooms: W-Bloods Point Road, E-Haunted House Enterance
 Room Name: Haunted House Enterance
 Room Description:  The door slams shut behind you! Now you really want out, but you have to find a way.
 Exit Rooms: E-Bottom of Haunted House Stairwell, N-Haunted House Room
 Room Name: Haunted House Room
 Room Description:  You see a window that you can escape through.
-Exit Rooms: E-Haunted House Enterance, W-Haunted House Yard
+Exit Rooms: S-Haunted House Enterance, W-Haunted House Yard
 Room Name: Bottom of Haunted House Stairwell
 Room Description: You are at the bottom of the stairs. 
 Exit Rooms: U-Top of Haunted House Stairwell, W-Haunted House Enterance
@@ -68,11 +68,11 @@ Room Name: You Lose Casino
 Room Description:  Here you can make bets with your tokens and get a % back.
 Exit Rooms: W-Packman Avenue
 Room Name: The Logger
-Room Description:  The Logger is a log ride... It looks like you are going to get wet!
+Room Description:  The Logger is a log ride... It looks like you are going to get wet! It also costs 20 tokens.
 Exit Rooms: E-Splash Street
 Room Name: Pool Party
 Room Description:  This is a Pool, you see no lifeguards.
 Exit Rooms: W-Splash Street
 Room Name: The Slippyest Slides
-Room Description:  You see water slides. Looks fun!
+Room Description:  You see water slides. Looks fun, but it costs 20 tokens to ride!
 Exit Rooms: S-Splash Street
