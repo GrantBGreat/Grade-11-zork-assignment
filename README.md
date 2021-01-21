@@ -54,4 +54,4 @@ All code must be professionally written (using industry standards) and will be m
 •	difficulty (extra marks for difficult extensions/tasks) 
 
 # What I did:
-My version of the zork game is based in a theme Park. In this theme park you enter and leave through the front gate. You participate in minigames at the theme park to earn tokens. Tokens can be used to buy food and drinks, or to go on a ride. They are your score when you end the game by leaving through the front gate or losing in any other way. Be carful though because you might get kicked out if you do certain things!
+My version of the zork game is based in a theme Park. In this theme park you enter and leave through the front gate. You participate in minigames at the theme park to earn tokens. Tokens can be used to buy food and drinks required to survive, or just to go on a ride. They are your score when you end the game by leaving through the front gate or by losing in any other way. Be carful though because you might get kicked out if you do certain things!
