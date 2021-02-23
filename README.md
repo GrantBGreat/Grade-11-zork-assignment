@@ -1,3 +1,5 @@
+### I am looking for someone with knowlage in creating JARs so that I can make this game executable.
+
 # Grade-11-zork-assignment
 Assignment for grade 11 comp-sci (ICS3U-AP) ISP written in java.
 
