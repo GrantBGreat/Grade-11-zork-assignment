@@ -1,5 +1,3 @@
-### I am looking for someone with knowlage in creating JARs so that I can make this game executable. This is being done in the [jar-creation](https://github.com/GrantBGreat/Grade-11-zork-assignment/tree/Jar-Creation) branch.
-
 # Grade-11-zork-assignment
 Assignment for grade 11 comp-sci (ICS3U-AP) ISP written in java.
 
