@@ -1,17 +1,3 @@
-/*
- * Class Room - a room in an adventure game.
- *
- * Author:  Michael Kolling
- * Version: 1.1
- * Date:    August 2000
- * 
- * This class is part of Zork. Zork is a simple, text based adventure game.
- *
- * "Room" represents one location in the scenery of the game.  It is 
- * connected to at most four other rooms via exits.  The exits are labelled
- * north, east, south, west.  For each direction, the room stores a reference
- * to the neighbouring room, or null if there is no exit in that direction.
- */
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
